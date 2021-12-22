@@ -11,7 +11,7 @@ void gen(string inputStr, string outStr, vector<string> &combStr);
 
 int main()
 {
-    vector<string> strs = {"",""};//{"eat","tea","tan","ate","nat","bat"};
+    vector<string> strs = {"eat","tea","tan","ate","nat","bat"};
     vector<vector<string>> answers = groupAnagrams(strs);
 
     for (int i=0; i< answers.size(); i++)

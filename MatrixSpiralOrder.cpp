@@ -9,7 +9,7 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) ;
 
 int main()
 {      
-    vector<vector<int>> matrix ={{1,2,3,4},{5,6,7,8},{9,10,11,12}} ;
+    vector<vector<int>> matrix ={{1,2,3},{5,6,7},{9,10,11}, {12,13,14}}; //{{1,2,3,4},{5,6,7,8},{9,10,11,12}} ;
     
     vector<int> result = spiralOrder(matrix);
 
@@ -32,25 +32,26 @@ vector<int> spiralOrder(vector<vector<int>>& matrix)
 
     int i_index=0, j_index=0;
    
-    for(int j=0; j<w*h; j++)
+    int steps = w*h;
+
+    while(steps>0)
     {
-        if(i_index == topLeft[0] && j_index == topLeft[0])
+        if(i_index == topLeft[0] && j_index == topLeft[1])
         {
             do
             {
+                steps--;
                 result.push_back(matrix[i_index][j_index]);
                 j_index++;
             } while (j_index <= topRight[1]);
             j_index --;
-
-            // topLeft[0] ++;
-            // topRight[0]++;
         }
         else if(i_index == topRight[0] && j_index == topRight[1])
         {
             i_index ++;
             do
             {
+                steps--;
                 result.push_back(matrix[i_index][j_index]);
                 i_index++;
             }  while (i_index <= bottomRight[0]);
@@ -61,58 +62,30 @@ vector<int> spiralOrder(vector<vector<int>>& matrix)
             j_index --;
             do
             {
+                steps--;
                 result.push_back(matrix[i_index][j_index]);
                 j_index--;
             }  while (j_index >= bottomLeft[1]);
+            j_index ++;
+            //update top-left and top-right
+            topLeft[0] ++;
+            topRight[0]++;
 
         }
         else if(i_index == bottomLeft[0] && j_index == bottomLeft[1])
         {
+            i_index --;
+            do
+            {
+                steps--;
+                result.push_back(matrix[i_index][j_index]);
+                i_index--;
+            }  while (i_index >= bottomLeft[0]);
+            i_index ++;
 
+            topRight[1] --;
+            bottomRight[1]--;
         }
-
-        // if(i_index == topLeft[0] && j_index <= topRight[1])
-        // {
-        //     result.push_back(matrix[i_index][j_index]);
-        //     if (j_index<topRight[1])
-        //         j_index ++;
-        //     else
-        //     {
-        //         i_index ++;
-        //     }
-        // }
-        // else if(i_index <= bottomRight[0] && j_index ==topRight[1])
-        // {
-        //     result.push_back(matrix[i_index][j_index]);
-
-        //     if(i_index<bottomRight[0])
-        //         i_index ++;
-        //     else
-        //     {
-        //         //update last if
-        //         topLeft[0]++;
-        //         topRight[0]++;
-
-        //         // topRight[1]--;
-        //         // bottomRight[1]--;
-        //         j_index --;
-        //     }
-        // }
-        // else if(i_index == bottomRight[0] && j_index <=bottomRight[1])
-        // {
-        //     result.push_back(matrix[i_index ][j_index]);
-
-        //     if(j_index<bottomLeft[0])
-        //         j_index -- ;
-        //     else
-        //     {
-        //         topRight[1]--;
-        //         bottomRight[1]--;
-
-        //         i_index --;
-        //     }
-
-        // }
     }
 
         
