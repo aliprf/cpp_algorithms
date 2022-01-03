@@ -59,14 +59,6 @@ vector<string> generateAllCombinations(string word)
 {
     vector<string> combStr;
     gen(word, "", combStr);
-
-    // cout << "word: " << "\n\r";
-
-    //  for (int i=0; i< combStr.size(); i++)
-    //  {
-    //      cout << combStr[i]<< " ";
-    //  }
-    // cout << "\n\r======================="<<" \n\r";
     return combStr;
 }
 void gen(string inputStr, string outStr, vector<string> &combStr)

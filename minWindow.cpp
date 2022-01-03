@@ -8,7 +8,7 @@ string minWindow(string s, string t);
 
 int main()
 {
-    cout << minWindow("ali", "a");
+    cout << minWindow("ADOBECODEBANC", "ABC");
 }
 
 string minWindow(string s, string t)
