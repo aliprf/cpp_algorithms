@@ -5,7 +5,7 @@
 using namespace std;
 
 int largestRectangleArea(vector<int>& heights);
-vector<int> findMinIndiceas(vector<int> inputVector);
+vector<vector<int>>findMinIndiceas(vector<int> inputVector);
 int findmim(vector<int> inputVector);
 int calculateArea(vector<int>& inputVector);
 int findmaximArea(vector<int> inputVector, int &maxim);
@@ -13,25 +13,33 @@ vector<int> splitArray(vector<int> inputVector,int from, int to);
 
 int main()
 {
-    vector<int> height = {2,4,5};//{2,1,5,6,2,3};
+    vector<int> height = {2,1,5,6,2,3};
     int maxim = largestRectangleArea(height);
 
     cout <<"maxim => "<< maxim << "\n\r";
 }
 
-vector<int> findMinIndiceas(vector<int> inputVector)
+vector<vector<int>>findMinIndiceas(vector<int> inputVector)
 {
-    vector<int> indices;
-    indices.push_back(0);
+    vector<vector<int>> indices;
 
     int min = inputVector[0];
     for(int i=1; i< inputVector.size(); i++)
         if(min>inputVector[i]) min = inputVector[i];
 
+    int fromIndex=0;
     for(int i=0; i< inputVector.size(); i++)
-        if(inputVector[i] == min) indices.push_back(i);
+    {
+        if(inputVector[i] == min)
+        {
+            int toIndex=i-1;
+            indices.push_back({fromIndex, toIndex});
+            fromIndex=i+1;
+        }
+    }   
 
-    indices.push_back(inputVector.size()-1);
+    int toIndex=inputVector.size()-1;
+    indices.push_back({fromIndex, toIndex});
 
     return indices;
 }
@@ -60,7 +68,7 @@ vector<int> splitArray(vector<int> inputVector,int from, int to)
 {
     vector<int> vec;
 
-    for(int i=from; i< to; i++)
+    for(int i=from; i<= to; i++)
         vec.push_back(inputVector[i]);
     
     return vec;
@@ -78,12 +86,12 @@ int findmaximArea(vector<int> inputVector, int &maxim)
     int _m = calculateArea(inputVector);
     maxim = max(maxim, _m);
 
-    vector<int> minIndices = findMinIndiceas(inputVector);
+    vector<vector<int>> minIndices = findMinIndiceas(inputVector);
 
-    for(int i=0; i<minIndices.size()-1; i++)
+    for(int i=0; i<minIndices.size(); i++)
     {   
-        int from = minIndices[i];
-        int to = minIndices[i+1];
+        int from = minIndices[i][0];
+        int to = minIndices[i][1];
 
         vector<int> vec = splitArray(inputVector, from, to);
         int h = findmaximArea(vec, maxim);
