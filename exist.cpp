@@ -31,7 +31,6 @@ int main()
 bool exist(vector<vector<char>> &board, string word)
 {
     vector<vector<int>> freeBoard(board.size(), vector<int>(board[0].size()));
-
     for (int i = 0; i < board.size(); i++)
 
         for (int j = 0; j < board[i].size(); j++)
