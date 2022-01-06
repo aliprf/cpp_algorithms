@@ -22,8 +22,6 @@ int main()
 
 int maximalRectangle(vector<vector<int>> &A) 
 {
-   
-
     vector<int> maxOfEachRow;
     for(int i=0; i< A.size(); i++)
     {
