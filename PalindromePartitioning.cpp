@@ -9,10 +9,15 @@ int minCut(string A);
 vector<vector<int>> createIndices(string str);
 vector<char> findDistinctChars(string str);
 int findMaxPalindromic(vector<vector<int>> treeIndices);
+void createAllsubStrings(string str, vector<string> &subStrings);
+
 int main()
 {
-   cout << minCut("aabcdba") << "\n\r";
+//    cout << minCut("aabcdba") << "\n\r";
 //    cout << numDistinct("abbccaa", "bcaa") << "\n\r";
+    vector<string> subStrings;
+    createAllsubStrings("abc", subStrings);
+    cout << "\n\r";
 }
 
 int minCut(string A)
@@ -23,13 +28,14 @@ int minCut(string A)
     return A.size()-maxPalindStr;
 }
 
-
 int findMaxPalindromic(vector<vector<int>> treeIndices)
 {
     //for each char, we have found the indices which make the tree palindromic 
     // now we want to merge these chars:
+    //sort them by size of the furthest and see if you can merge them with smaller one.
     
 }
+
 vector<vector<int>> createIndices(string str)
 {
     vector<vector<int>> treeIndices;
@@ -64,4 +70,24 @@ vector<char> findDistinctChars(string str)
             
     }
     return seen;
+}
+
+void createAllsubStrings(string str, vector<string> &subStrings)
+{
+    if(str.length() == 1)
+    {
+        subStrings.push_back(str);
+        return;
+    }
+    
+    string prefixStr;
+    prefixStr.push_back(str[0]);
+    str.erase(0,1);
+    createAllsubStrings(str, subStrings);
+
+    int strL = subStrings.size();
+    for(int i=0; i< strL; i++)
+        subStrings.push_back(prefixStr+subStrings[i]);
+    subStrings.push_back(prefixStr);
+
 }
