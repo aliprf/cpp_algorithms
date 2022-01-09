@@ -11,7 +11,7 @@ int minJump(vector<int> &A, int current, vector<int> &jumpHistory);
 
 int main()
 {
-    vector<int> A = {2, 4, 1, 2,2,1, 1}; // {2,3,1,1,4,0}; //{2, 1, 1};//
+    vector<int> A = {2, 4, 1, 2, 2, 1, 1}; // {2,3,1,1,4,0}; //{2, 1, 1};//
     cout << jump(A) << "\n\r";
 }
 
