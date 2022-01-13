@@ -10,13 +10,13 @@ vector<vector<int>> createIndices(string str);
 vector<char> findDistinctChars(string str);
 int findMaxPalindromic(vector<vector<int>> treeIndices);
 void createAllsubStrings(string str, vector<string> &subStrings);
-
+void createAllsubStrings(string str, string ansStr, vector<string> &subStrings);
 int main()
 {
 //    cout << minCut("aabcdba") << "\n\r";
 //    cout << numDistinct("abbccaa", "bcaa") << "\n\r";
     vector<string> subStrings;
-    createAllsubStrings("abc", subStrings);
+    createAllsubStrings("abc", "", subStrings);
     cout << "\n\r";
 }
 
@@ -70,6 +70,26 @@ vector<char> findDistinctChars(string str)
             
     }
     return seen;
+}
+
+void createAllsubStrings(string str, string ansStr, vector<string> &subStrings)
+{
+    if(str.length() == 0)
+    {
+        subStrings.push_back(ansStr);
+        return;
+    }
+    string prefixStr;
+    prefixStr.push_back(str[0]);
+    
+    str.erase(0,1);
+
+    createAllsubStrings(str, ansStr, subStrings);
+
+    createAllsubStrings(str, ansStr+prefixStr, subStrings);
+
+    // 
+    // createAllsubStrings(str, subStrings);
 }
 
 void createAllsubStrings(string str, vector<string> &subStrings)

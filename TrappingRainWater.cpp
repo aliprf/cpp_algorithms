@@ -4,39 +4,39 @@
 
 using namespace std;
 
-int trap(vector<int>& height);
+int trap(vector<int> &height);
 
-
-int main ()
-{       
+int main()
+{
     // vector<int> height = {4,2,0,3,2,5};
-    vector<int> height = {0,1,0,2,1,0,1,3,2,1,2,1};
+    vector<int> height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
     // vector<int> height = {4,2,3};
 
     int result = trap(height);
-    cout<< "water |=> " << result<< "\n\r";
-
+    cout << "water |=> " << result << "\n\r";
 }
-int trap(vector<int>& height) 
-{
-       int sum =0;
-    bool finish =false;
 
-    for(int i=0; i< height.size(); )        
+int trap(vector<int> &height)
+{
+    int sum = 0;
+    bool finish = false;
+
+    for (int i = 0; i < height.size();)
     {
-        if(finish) return sum;
+        if (finish)
+            return sum;
 
         int base = height[i];
-        int secSum=0;
-        int counter =0;
-        bool found= false;
-        int min =0;
-        for(int j=i+1; j< height.size(); j++)
+        int secSum = 0;
+        int counter = 0;
+        bool found = false;
+        int min = 0;
+        for (int j = i + 1; j < height.size(); j++)
         {
-            if( height[j]<base)
+            if (height[j] < base)
             {
                 secSum += base - height[j];
-                counter ++;
+                counter++;
                 // if(height[j]> min)
                 // {
                 //     secSum -= counter * (base - height[j]);
@@ -45,17 +45,17 @@ int trap(vector<int>& height)
                 //     break;
                 // }
             }
-            else if(height[j]>=base)
+            else if (height[j] >= base)
             {
                 found = true;
-                i =j;
+                i = j;
                 break;
             }
-            else if(height[j]>height[j-1] && j-1 !=i)
+            else if (height[j] > height[j - 1] && j - 1 != i)
             {
                 secSum -= counter * (base - height[j]);
                 found = true;
-                i =j;
+                i = j;
                 break;
             }
 
@@ -65,8 +65,7 @@ int trap(vector<int>& height)
             //     found = true;
             //     i =j;
             //     break;
-            // }   
-           
+            // }
         }
         if (found)
         {

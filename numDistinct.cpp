@@ -14,8 +14,8 @@ int fact(int n);
 int main()
 {
 //    cout << numDistinct("abarabbbit", "rabbit") << "\n\r";
-//    cout << numDistinct("abbccaa", "bcaa") << "\n\r";
-   cout << numDistinct("aaaababbababbaabbaaababaaabbbaaabbb", "bbababa") << "\n\r";
+   cout << numDistinct("ababccaa", "bcaa") << "\n\r";
+//    cout << numDistinct("aaaababbababbaabbaaababaaabbbaaabbb", "bbababa") << "\n\r";
 }
 
 

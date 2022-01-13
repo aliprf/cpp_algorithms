@@ -14,7 +14,7 @@ int main ()
     // cout << "3:=> " << countAndSay(3)<< "\r\n";
     // cout << "4:=> " << countAndSay(4) << "\r\n";
     // cout << "5:=> " << countAndSay(5) << "\r\n";
-    cout << "6:=> " << countAndSay(6) << "\r\n";
+    // cout << "6:=> " << countAndSay(6) << "\r\n";
     // countAndSay(6);
 }
 string countAndSay(int n) 
@@ -37,7 +37,7 @@ string say(string input)
     }
     else
     {
-        cout << "input=> " << input<< "\n\r";
+        // cout << "input=> " << input<< "\n\r";
         for(int j=0;j<=input.size(); j++)
         {
             int count =0;
