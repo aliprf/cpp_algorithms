@@ -13,7 +13,7 @@ using namespace std;
 find the shortest path from one index to others:
 */
 
-void dijkstra(const vector<int> nodes, vector<vector<int>> vMat, vector<vector<int>> &costs, unordered_map<int, bool> &visited, int startNode)
+void dijkstra(const vector<int> nodes, const vector<vector<int>> vMat, unordered_map<int, int> &costs, unordered_map<int, bool> &visited, int startNode);
 
 int main()
 {
@@ -24,19 +24,25 @@ int main()
         {-1, 0,10,-1,-1,-1},// 1
         {-1,-1, 0,-1,30,-1},// 2
         {10,-1,-1, 0,15,-1},// 3
-        {-1,-1,35,-1, 0,-1},// 4
+        {-1,20,35,-1, 0,-1},// 4
         {-1,-1,-1,-1, 3, 0},// 5
         //0  1  2  3  4  5
     };
     int startNode = 0;
     unordered_map<int, bool> visited;
-    vector<vector<int>> costs;
+    unordered_map<int, int> costs;
     
+    for(int i=0; i< nodes.size(); i++)
+    {
+        if(i==startNode) continue;
+
+        costs[i]=-1;
+    }
     dijkstra(nodes, vMat, costs, visited, startNode);
     return -1;
 }
 
-void dijkstra(const vector<int> nodes, vector<vector<int>> vMat, vector<vector<int>> &costs, unordered_map<int, bool> &visited, int startNode)
+void dijkstra(const vector<int> nodes, vector<vector<int>> vMat, unordered_map<int, int> &costs, unordered_map<int, bool> &visited, int startNode)
 {
     int midNode =startNode;
 
@@ -47,12 +53,16 @@ void dijkstra(const vector<int> nodes, vector<vector<int>> vMat, vector<vector<i
         {
             if(midNode==i || i==startNode) continue;
             
-            if(costs[startNode][i] == NULL) costs[startNode][i] = -1;
-
             int directCost = vMat[startNode][i];
-            
-            int s_m_Cost = vMat[startNode][midNode] ;
-            int m_e_cost = vMat[midNode][i];
+
+            if(midNode==startNode)
+            {
+                costs[i] = directCost;
+                continue;
+            } 
+
+            int s_m_Cost = vMat[midNode][i] ;
+            int m_e_cost = costs[midNode];
 
             if(s_m_Cost==-1 || m_e_cost==-1) continue; //nothing to update
             else if(directCost==-1)
